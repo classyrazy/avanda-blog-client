@@ -1,0 +1,29 @@
+@use "sass:map";
+
+$tints: (
+        10: 20%,
+        50: 40%,
+        100: 60%,
+        200: 80%
+);
+
+$shades: (
+        300: 40%,
+        400: 60%,
+        500: 80%
+
+);
+
+@each $element, $color in $colors {
+  @if($color != transparent && $element != 'white'){
+    //  generate tints
+    @each $variant, $percentage in $tints {
+      $colors: map.set($colors, $element+'-'+$variant, mix($color, #ffffff, $percentage));
+    }
+    // generate shades
+    @each $variant, $percentage in $shades {
+      //@debug $percentage;
+      $colors: map.set($colors, $element +'-'+$variant, mix($color, #000000, $percentage));
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@mixin generate-margins($pre: '',$screen,$state,$state_name){
+  @each $element, $size in $sizes {
+    @each $side in $sides{
+      $alias: map_get($side_aliases,$side);
+      @if $side == "all" {
+        .#{$state_name}#{$screen}#{$pre}m-#{$element}#{$state} {
+          margin: #{$pre}#{toRem($size,$element)} !important;
+        }
+      } @else if $side == "y" {
+        .#{$state_name}#{$screen}#{$pre}my-#{$element}#{$state} {
+          margin-top: #{$pre}#{toRem($size,$element)} !important;
+          margin-bottom: #{$pre}#{toRem($size,$element)} !important;
+        }
+      } @else if $side == "x" {
+        .#{$state_name}#{$screen}#{$pre}mx-#{$element}#{$state} {
+          margin-right: #{$pre}#{toRem($size,$element)} !important;
+          margin-left: #{$pre}#{toRem($size,$element)} !important;
+        }
+      } @else if $alias{
+        .#{$state_name}#{$screen}#{$pre}m#{$alias}-#{$element}#{$state} {
+          margin-#{$side}: #{$pre}#{toRem($size,$element)} !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin margin-for-screen($screen,$state,$state_name){
+  /*::margin:: margin-*-*/
+
+  /*All*/
+
+  //All margins
+
+  @include generate-margins('',$screen,$state,$state_name);
+
+
+  /*:: negative margin:: margin-*-*/
+  @include generate-margins('-',$screen,$state,$state_name)
+
+  /*All*/
+
+
+}
+
+
+@include margin-for-screen('','','');
+
+@media only screen and (max-width: 599px) {
+  @include margin-for-screen('sm\\:','','');
+}
+//md-css-property
+@media only screen and (min-width: 600px) and (max-width: 899px){
+  @include margin-for-screen('md\\:','','');
+}
+
+//lg-css-property
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+  /*tablet-landscape-only*/
+  @include margin-for-screen('lg\\:','','');
+}
+//xlg-css-property
+@media only screen and (min-width: 1200px) and (max-width: 1400px){
+  /*.desktop-only */
+  @include margin-for-screen('xlg\\:','','');
+}
+//xxlg-css-property
+@media only screen and (min-width: 1401px) {
+  /*.desktop-up */
+  @include margin-for-screen('xxlg\\:','','');
+}
+
+@include margin-for-screen('',':hover','hover\\:');
+@include margin-for-screen('',':focus','focus\\:');
+@include margin-for-screen('',':active','active\\:');

@@ -1,0 +1,38 @@
+@mixin text-font-for-screen($screen,$state,$state_name){
+  /*::text color:: txt-c-* */
+  @each $element, $font in $fonts {
+    .#{$state_name}#{$screen}txt-f-#{$element}#{$state} {
+      font-family: $font!important;
+    }
+  }
+}
+
+
+@include text-font-for-screen('','','');
+@include text-font-for-screen('',':hover','hover\\:');
+@include text-font-for-screen('',':focus','focus\\:');
+@include text-font-for-screen('',':active','active\\:');
+
+@media only screen and (max-width: 599px) {
+  @include text-font-for-screen('sm\\:','','');
+}
+//md-css-property
+@media only screen and (min-width: 600px) and (max-width: 899px){
+  @include text-font-for-screen('md\\:','','');
+}
+
+//lg-css-property
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+  /*tablet-landscape-only*/
+  @include text-font-for-screen('lg\\:','','');
+}
+//xlg-css-property
+@media only screen and (min-width: 1200px) and (max-width: 1400px){
+  /*.desktop-only */
+  @include text-font-for-screen('xlg\\:','','');
+}
+//xxlg-css-property
+@media only screen and (min-width: 1401px) {
+  /*.desktop-up */
+  @include text-font-for-screen('xxlg\\:','','');
+}

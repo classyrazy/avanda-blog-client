@@ -1,0 +1,42 @@
+@use "sass:math";
+@mixin opacity-for-screen($screen,$state,$state_name){
+  $grades: 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100;
+
+  @each $fade in $grades{
+    .#{$state_name}#{$screen}fade-#{$fade}#{$state} {
+      opacity: math.div($fade,100);
+    }
+
+  }
+}
+
+
+@include opacity-for-screen('','','');
+
+@media only screen and (max-width: 599px) {
+  @include opacity-for-screen('sm\\:','','');
+}
+//md-css-property
+@media only screen and (min-width: 600px) and (max-width: 899px){
+  @include opacity-for-screen('md\\:','','');
+}
+
+//lg-css-property
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+  /*tablet-landscape-only*/
+  @include opacity-for-screen('lg\\:','','');
+}
+//xlg-css-property
+@media only screen and (min-width: 1200px) and (max-width: 1400px){
+  /*.desktop-only */
+  @include opacity-for-screen('xlg\\:','','');
+}
+//xxlg-css-property
+@media only screen and (min-width: 1401px) {
+  /*.desktop-up */
+  @include opacity-for-screen('xxlg\\:','','');
+}
+
+@include opacity-for-screen('',':hover','hover\\:');
+@include opacity-for-screen('',':focus','focus\\:');
+@include opacity-for-screen('',':active','active\\:');

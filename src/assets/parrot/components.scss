@@ -1,0 +1,40 @@
+.container{
+  @extend .px-30, .md\:px-20, .sm\:px-8,
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{
+  transition-delay: 3600s;
+}
+.login-cover{
+  background-image: url('/bgs/login-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+}
+.signup-cover{
+  background-image: url('/bgs/signup-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+}
+.trans-grey{
+  background: rgba(255, 255, 255, 0.9);
+}
+.txt-underline{
+  text-decoration: underline;
+}
+.max-w{
+  max-width: 850px;
+}
+.no-break{
+  white-space: nowrap;
+}
+.align-center{
+  align-items: center;
+}
+.scroll-x{
+  overflow-x: auto;
+}
+.scroll-y{
+  overflow-y: auto;
+}

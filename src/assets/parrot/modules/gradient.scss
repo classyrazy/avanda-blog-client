@@ -1,0 +1,75 @@
+
+@mixin background-for-screen($screen,$state,$state_name){
+
+
+//  generate gradient from
+  @each $element, $color in $colors {
+    @if($color != transparent){
+      .#{$state_name}#{$screen}g-bg-from-#{$element}#{$state} {
+        --pr-gad-from: #{$color};
+        --pr-gad-stops: var(--pr-gad-from),var(--pr-gad-to,rgba(192,132,252,0));
+      }
+    }
+
+  }
+  //  generate gradient to
+  @each $element, $color in $colors {
+    @if($color != transparent){
+      .#{$state_name}#{$screen}g-bg-to-#{$element}#{$state} {
+        --pr-gad-to: #{$color};
+      }
+    }
+  }
+  //  generate gradient via
+  @each $element, $color in $colors {
+    @if($color != transparent){
+      .#{$state_name}#{$screen}g-bg-via-#{$element}#{$state} {
+        --pr-gad-stops:  var(--pr-gad-from),#{$color},var(--pr-gad-to,rgba(236,72,153,0));
+      }
+    }
+
+
+  }
+//  generate rgb directions
+  @each $side in $sides{
+    //@debug $side;
+    $alias: map_get($side_aliases,$side);
+    @if $alias and $alias != 'a' {
+      .#{$state_name}#{$screen}g-to-#{$alias}#{$state} {
+        background-image: linear-gradient(to $side,var(--pr-gad-stops))!important;
+      }
+    }
+  }
+
+}
+
+
+@include background-for-screen('','','');
+
+@media only screen and (max-width: 599px) {
+  @include background-for-screen('sm\\:','','');
+}
+//md-css-property
+@media only screen and (min-width: 600px) and (max-width: 899px){
+  @include background-for-screen('md\\:','','');
+}
+
+//lg-css-property
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+  /*tablet-landscape-only*/
+  @include background-for-screen('lg\\:','','');
+}
+//xlg-css-property
+@media only screen and (min-width: 1200px) and (max-width: 1400px){
+  /*.desktop-only */
+   @include background-for-screen('xlg\\:','','');
+}
+//xxlg-css-property
+@media only screen and (min-width: 1401px) {
+  /*.desktop-up */
+   @include background-for-screen('xxlg\\:','','');
+}
+
+@include background-for-screen('',':hover','hover\\:');
+@include background-for-screen('',':focus','focus\\:');
+@include background-for-screen('',':active','active\\:');

@@ -1,0 +1,50 @@
+//@import "styles";
+*{
+  box-sizing: border-box;
+  transition: .3s all;
+}
+html{
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-x: hidden;
+}
+body{
+  @extend .txt-f-sfpro, .m-none, .txt-s-font, .p-none, .txt-c-black, .txt-light;
+  height: -webkit-fill-available;
+  overflow-x: hidden;
+}
+p{
+  @extend .txt-f-sfpro,.my-none,.txt-normal,.txt-s-font,.txt-c-black
+}
+a{
+  @extend .txt-c-blue,.mouse-pointer;
+  text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6{
+  @extend .my-none, .txt-f-sans, .txt-s-font
+}
+//h1{
+//  @extend .txt-s-18
+//}
+//h2{
+//  @extend .txt-s-16
+//}
+//h3{
+//  @extend .txt-s-14
+//}
+//h4{
+//  @extend .txt-s-12
+//}
+//h5{
+//  @extend .txt-s-10
+//}
+//h6{
+//  @extend .txt-s-8
+//}
+
+input,textarea,button,select{
+  @extend .txt-f-sans, .txt-s-font
+}
+.grid > div{
+  min-width: 0;
+}

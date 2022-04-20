@@ -1,0 +1,13 @@
+
+:root{
+  --poppins: 'Playfair Display', serif;
+  --sans: 'Open Sans', sans-serif;
+  --sf-pro-display: 'SF Pro Display', sans-serif;
+
+}
+
+$fonts: (
+        poppins: var(--poppins),
+        sans: var(--sans),
+        sfpro: var(--sf-pro-display)
+);
